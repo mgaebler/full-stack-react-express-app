@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack",
-    "dev": "webpack-dev-server --open"
+    "dev": "webpack-dev-server --open",
+    "initialize": "babel-node --extensions \".ts\" ./src/server/initialize-db.ts"
   },
   "keywords": [
     "react",
@@ -21,7 +22,11 @@
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
+    "@types/md5": "^2.1.33",
+    "@types/mongodb": "^3.5.2",
     "babel-loader": "^8.0.2",
+    "md5": "^2.2.1",
+    "mongodb": "^3.5.5",
     "typescript": "^3.8.3",
     "webpack": "^4.17.2",
     "webpack-cli": "^3.1.2",
