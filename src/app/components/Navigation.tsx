@@ -1,7 +1,7 @@
-import { connect, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import React from 'react';
-import { DefaultState } from '../store';
+import { DefaultState } from 'server/defaultState';
 
 export const Navigation = () => {
   const state = useSelector((state: DefaultState) => state);

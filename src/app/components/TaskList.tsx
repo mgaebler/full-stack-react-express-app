@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { DefaultState } from 'app/store';
-import { requestTaskCreation } from '../store/modules/tasks';
+import { DefaultState } from 'server/defaultState';
+import { requestTaskCreation, createTask } from '../store/modules/tasks';
 
 interface Props {
   groupID: string;
@@ -14,7 +14,15 @@ export const TaskList: FC<Props> = ({ groupID }) => {
   const dispatch = useDispatch();
 
   const handleRequestTaskCreation = (groupID: string) => {
-    dispatch(requestTaskCreation(groupID));
+    dispatch(
+      createTask({
+        id: 'bar',
+        name: 'foo',
+        group: groupID,
+        owner: 'u1'
+      })
+    );
+    // dispatch(requestTaskCreation(groupID));
   };
 
   return (

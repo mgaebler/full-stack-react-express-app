@@ -1,17 +1,16 @@
 import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
-import { defaultState } from '../../server/defaultState';
 
 import { combineEpics, createEpicMiddleware } from 'redux-observable';
-
-export type DefaultState = typeof defaultState;
-
-function groups(state = defaultState.groups, action) {
-  return state;
-}
+import { reducer as tasks } from './modules/tasks';
+import { reducer as groups } from './modules/groups';
+import { reducer as users } from './modules/users';
+import { reducer as comments } from './modules/comments';
 
 const rootReducer = combineReducers({
   tasks,
-  groups
+  groups,
+  users,
+  comments
 });
 
 const rootEpic = combineEpics({

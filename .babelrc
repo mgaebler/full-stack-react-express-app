@@ -6,6 +6,17 @@
   ],
   "plugins": [
     "@babel/proposal-class-properties",
-    "@babel/plugin-proposal-object-rest-spread"
+    "@babel/plugin-proposal-object-rest-spread",
+    [
+      "module-resolver",
+      {
+        "root": ["./"],
+        "alias": {
+          "app": "./src/app",
+          "server": "./src/server",
+          "domain": "./src/domain"
+        }
+      }
+    ]
   ]
 }

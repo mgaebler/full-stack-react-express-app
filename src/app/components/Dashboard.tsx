@@ -1,7 +1,8 @@
 import React, { FC, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { DefaultState } from 'app/store';
+
 import { TaskList } from './TaskList';
+import { DefaultState } from 'server/defaultState';
 
 export const DashBoard: FC = () => {
   const groups = useSelector((state: DefaultState) => state.groups);

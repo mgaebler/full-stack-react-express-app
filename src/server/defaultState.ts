@@ -1,4 +1,5 @@
 import md5 from 'md5';
+export type DefaultState = typeof defaultState;
 export const defaultState = {
   users: [
     {
