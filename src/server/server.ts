@@ -3,7 +3,7 @@ import cors from 'cors';
 import express from 'express';
 import { connectDB } from './connect-db';
 
-const port = 8080;
+const port = 8000;
 const app = express();
 
 app.listen(port, () => console.log('ServerListen on port ', port));
@@ -23,6 +23,14 @@ const addNewTask = async (task: Task) => {
   const collection = db.collection<Task>('tasks');
   await collection.insertOne(task);
 };
+
+app.get('/', async (req, res) => {
+  const db = await connectDB();
+  const collection = db.collection<Task>('tasks');
+  const cursor = await collection.find({});
+  const tasks = await cursor.toArray();
+  res.status(200).json(tasks);
+});
 
 app.post('/task/new', async (req, res) => {
   let task = req.body;

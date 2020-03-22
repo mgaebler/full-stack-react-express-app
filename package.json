@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack",
-    "dev": "webpack-dev-server --open",
+    "dev": "webpack-dev-server --watch --open",
     "initialize": "babel-node --extensions \".ts\" ./src/server/initialize-db.ts",
     "server": "babel-node --extensions \".ts\" ./src/server/server.ts"
   },
@@ -28,6 +28,7 @@
     "@types/express": "^4.17.3",
     "@types/md5": "^2.1.33",
     "@types/mongodb": "^3.5.2",
+    "@types/react-router-dom": "^5.1.3",
     "babel-loader": "^8.0.2",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
@@ -41,6 +42,13 @@
   },
   "dependencies": {
     "@babel/preset-typescript": "^7.9.0",
+    "@types/react": "^16.9.25",
+    "@types/react-dom": "^16.9.5",
+    "@types/react-redux": "^7.1.7",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.1.2",
     "redux": "^4.0.5"
   }
 }
