@@ -2,6 +2,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import express from 'express';
 import { connectDB } from './connect-db';
+import { Task } from 'domain/Task';
 
 const port = 8000;
 const app = express();
@@ -9,14 +10,6 @@ const app = express();
 app.listen(port, () => console.log('ServerListen on port ', port));
 
 app.use(cors(), bodyParser.urlencoded({ extended: true }), bodyParser.json());
-
-interface Task {
-  name: string;
-  id: string;
-  group: string;
-  owner: string;
-  isComplete?: boolean;
-}
 
 const addNewTask = async (task: Task) => {
   const db = await connectDB();
