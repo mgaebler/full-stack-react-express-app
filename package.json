@@ -6,9 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack",
-    "dev": "webpack-dev-server --watch --open",
+    "dev": "webpack-dev-server --display-error-details --watch --open",
     "initialize": "babel-node --extensions \".ts\" ./src/server/initialize-db.ts",
-    "server": "babel-node --extensions \".ts\" ./src/server/server.ts"
+    "server": "babel-node --extensions \".ts\" ./src/server/server.ts",
+    "check-types": "tsc"
   },
   "keywords": [
     "react",
@@ -20,6 +21,7 @@
     "@babel/core": "^7.0.0",
     "@babel/node": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-object-rest-spread": "^7.9.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
@@ -51,6 +53,8 @@
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "redux": "^4.0.5",
+    "redux-observable": "^1.2.0",
+    "rxjs": "^6.5.4",
     "typesafe-actions": "^5.1.0"
   }
 }
