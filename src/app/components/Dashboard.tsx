@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import { TaskList } from './TaskList';
+import { TaskList } from '../modules/tasks/components/TaskList';
 import { DefaultState } from 'server/defaultState';
 
 export const DashBoard: FC = () => {
@@ -13,7 +13,7 @@ export const DashBoard: FC = () => {
       <div
         style={{
           display: 'flex',
-          flexDirection: 'row'
+          flexDirection: 'row',
         }}
       >
         {groups.map((group) => (

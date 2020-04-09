@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { DefaultState } from 'server/defaultState';
-import { requestTaskCreation, createTask } from '../store/modules/tasks';
+import { fetchTasks, createNewTask } from '../actions';
+import { Link } from 'react-router-dom';
 
 interface Props {
   groupID: string;
@@ -15,11 +16,18 @@ export const TaskList: FC<Props> = ({ groupID }) => {
 
   const handleRequestTaskCreation = (groupID: string) => {
     dispatch(
-      createTask({
-        id: 'bar',
-        name: 'foo',
+      // createTask({
+      //   id: 'bar',
+      //   name: 'foo',
+      //   group: groupID,
+      //   owner: 'u1',
+      // })
+      createNewTask.request({
         group: groupID,
-        owner: 'u1'
+        id: '234231241234',
+        name: 'foobar',
+        owner: 'U1',
+        isComplete: false,
       })
     );
     // dispatch(requestTaskCreation(groupID));
@@ -29,7 +37,9 @@ export const TaskList: FC<Props> = ({ groupID }) => {
     <div>
       <ul>
         {tasks.map((task) => (
-          <li key={task.id}>{task.name}</li>
+          <li key={task.id}>
+            <Link to={`/task/${task.id}`}>{task.name}</Link>
+          </li>
         ))}
       </ul>
       <button onClick={() => handleRequestTaskCreation(groupID)}>
