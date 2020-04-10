@@ -2,19 +2,29 @@ import { action, createAction, createAsyncAction } from 'typesafe-actions';
 import { Task } from 'domain/Task';
 import cuid from 'cuid';
 
-// export const createTask = createAction(
-//   'tasks/CREATE',
-//   (action) => (task: Task) => action({ ...task, id: cuid() })
-// );
-
 // export const createTask = (task: Task) =>
 //   action('tasks/CREATE', { ...task, id: cuid() });
 
 // export const requestTaskCreation = (groupID: string) =>
 //   action('task/REQUEST_TASK_CREATION', { groupID });
 
-// .handleAction(createTask, (state:, action) => state)
-// .handleAction(requestTaskCreation, (state, action) => state);
+export const setTaskCompletion = createAction(
+  'tasks/SET_TASK_COMPLETION',
+  (id: string, isComplete: boolean) => ({ id, isComplete })
+)<{ id: string; isComplete: boolean }>();
+
+export const setTaskName = createAction(
+  'tasks/SET_TASK_NAME',
+  (id: string, name: string) => ({ id, name })
+)();
+
+export const setTaskGroup = createAction(
+  'tasks/SET_TASK_GROUP',
+  (id: string, groupID: string) => ({
+    id,
+    groupID,
+  })
+)();
 
 export const fetchTasks = createAsyncAction(
   'tasks/FETCH_TASKS_REQUEST',

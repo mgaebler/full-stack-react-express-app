@@ -1,27 +1,55 @@
 import React, { FC } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'app/store/store';
+import { Link } from 'react-router-dom';
+import { setTaskCompletion, setTaskName, setTaskGroup } from '../actions';
 
 interface Props {
   id: string;
-  groups: [];
 }
-export const TaskDetail: FC<Props> = ({ id, groups }) => {
+export const TaskDetail: FC<Props> = ({ id }) => {
   const task = useSelector<RootState>((state) =>
     state.tasks.find((task) => task.id === id)
   );
+
+  const groups = useSelector<RootState>((state) => state.groups);
+  const dispatch = useDispatch();
+
   return (
     task && (
       <div>
-        <h3>{task.name}</h3>
-        <button>Complete / Reopen Task</button>
-        <select>
-          {groups.map((group) => (
-            <option key={group.id} value={group.id}>
-              {group.name}
-            </option>
-          ))}
-        </select>
+        <div>
+          <input
+            onChange={(e) => dispatch(setTaskName(task.id, e.target.value))}
+            value={task.name}
+          />
+        </div>
+        <div>
+          <button
+            onClick={() =>
+              dispatch(setTaskCompletion(task.id, !task.isComplete))
+            }
+          >
+            {task.isComplete ? 'Reopen' : 'Complete'}
+          </button>
+        </div>
+        <div>
+          <select
+            onChange={(e) => dispatch(setTaskGroup(task.id, e.target.value))}
+            value={task.group}
+          >
+            {groups.map((group) => (
+              <option key={group.id} value={group.id}>
+                {group.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <Link to={'/dashboard'}>
+            <button>Done</button>
+          </Link>
+        </div>
       </div>
     )
   );
