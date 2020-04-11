@@ -6,12 +6,16 @@ import { Comment } from 'domain/Comment';
 export type DefaultState = typeof defaultState;
 
 interface State {
+  session: { authenticated: boolean };
   users: User[];
   groups: Group[];
   tasks: Task[];
   comments: Comment[];
 }
 export const defaultState: State = {
+  session: {
+    authenticated: false,
+  },
   users: [
     {
       id: 'U1',
