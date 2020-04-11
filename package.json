@@ -9,8 +9,9 @@
     "dev": "webpack-dev-server --display-error-details --watch --open",
     "initialize": "babel-node --extensions \".ts\" ./src/server/initialize-db.ts",
     "server": "babel-node --extensions \".ts\" ./src/server/server.ts",
+    "dev-server": "babel-node --extensions \".ts\" ./src/server/server.ts",
     "check-types": "tsc",
-    "start-dev": "concurrently \"npm run server\" \"npm run dev\""
+    "start-dev": "concurrently \"nodemon\" \"npm run dev\" \"docker-compose up\""
   },
   "keywords": [
     "react",
@@ -39,6 +40,7 @@
     "express": "^4.17.1",
     "md5": "^2.2.1",
     "mongodb": "^3.5.5",
+    "nodemon": "^2.0.3",
     "typescript": "^3.8.3",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.1.2",
@@ -49,6 +51,7 @@
     "@types/react": "^16.9.25",
     "@types/react-dom": "^16.9.5",
     "@types/react-redux": "^7.1.7",
+    "axios": "^0.19.2",
     "concurrently": "^5.1.0",
     "cuid": "^2.1.8",
     "react": "^16.13.1",
