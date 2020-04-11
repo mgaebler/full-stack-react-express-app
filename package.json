@@ -9,7 +9,8 @@
     "dev": "webpack-dev-server --display-error-details --watch --open",
     "initialize": "babel-node --extensions \".ts\" ./src/server/initialize-db.ts",
     "server": "babel-node --extensions \".ts\" ./src/server/server.ts",
-    "check-types": "tsc"
+    "check-types": "tsc",
+    "start-dev": "concurrently \"npm run server\" \"npm run dev\""
   },
   "keywords": [
     "react",
@@ -48,6 +49,7 @@
     "@types/react": "^16.9.25",
     "@types/react-dom": "^16.9.5",
     "@types/react-redux": "^7.1.7",
+    "concurrently": "^5.1.0",
     "cuid": "^2.1.8",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
