@@ -13,7 +13,7 @@ import { Task } from 'domain/Task';
 
 const initialState = defaultState.tasks;
 
-export const reducer = createReducer<Task[], RootAction>(initialState)
+export const reducer = createReducer<Task[], RootAction>([])
   .handleAction(fetchTasks.success, (state, action) => [
     ...state,
     ...action.payload,
@@ -21,28 +21,28 @@ export const reducer = createReducer<Task[], RootAction>(initialState)
   .handleAction(createNewTask.success, (state, action) => [
     ...state,
     action.payload,
-  ])
-  .handleAction(setTaskCompletion, (state, action) =>
-    state.map((task: Task) =>
-      task.id === action.payload.id
-        ? { ...task, isComplete: action.payload.isComplete }
-        : task
-    )
-  )
-  .handleAction(setTaskGroup, (state, action) =>
-    state.map((task: Task) =>
-      task.id === action.payload.id
-        ? { ...task, group: action.payload.groupID }
-        : task
-    )
-  )
-  .handleAction(setTaskName, (state, action) =>
-    state.map((task: Task) =>
-      task.id === action.payload.id
-        ? { ...task, name: action.payload.name }
-        : task
-    )
-  );
+  ]);
+// .handleAction(setTaskCompletion, (state, action) =>
+//   state.map((task: Task) =>
+//     task.id === action.payload.id
+//       ? { ...task, isComplete: action.payload.isComplete }
+//       : task
+//   )
+// )
+// .handleAction(setTaskGroup, (state, action) =>
+//   state.map((task: Task) =>
+//     task.id === action.payload.id
+//       ? { ...task, group: action.payload.groupID }
+//       : task
+//   )
+// )
+// .handleAction(setTaskName, (state, action) =>
+//   state.map((task: Task) =>
+//     task.id === action.payload.id
+//       ? { ...task, name: action.payload.name }
+//       : task
+//   )
+// );
 
 // export const reducer = createReducer(initialState, {
 //   'tasks/CREATE': (state, action) => [...state, action.payload],

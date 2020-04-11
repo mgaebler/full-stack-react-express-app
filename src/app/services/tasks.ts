@@ -1,45 +1,19 @@
-import { Task } from '../../domain/Task';
+import axios from 'axios';
+import { Task } from 'domain/Task';
 
-let tasks: Task[] = [
-  {
-    id: '23215234123412341235',
-    name: 'foobar',
-    group: 'G1',
-    owner: 'user1',
-  },
-  {
-    id: '1234523523',
-    name: 'baz',
-    group: 'G2',
-    owner: 'user1',
-  },
-  {
-    id: '235125124312341',
-    name: 'bat',
-    group: 'G3',
-    owner: 'user1',
-  },
-];
+const url = 'http://localhost:8000';
 
-export function loadSnapshot(): Promise<Task[]> {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(tasks);
-    }, 500);
-  });
+export async function fetchAllTasks() {
+  const response = await axios.get<Task[]>(`${url}/tasks`);
+  return response.data;
 }
 
-export function saveSnapshot(data: Task[]): Promise<undefined> {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      tasks = data;
-      resolve();
-    }, 500);
-  });
+export async function postNewTask(task: Task) {
+  const response = await axios.post<Task>(`${url}/task/new`, { task });
+  return response.data;
 }
 
-export function postNewTask(task: Task): Promise<Task> {
-  return new Promise((resolve, reject) =>
-    setTimeout(() => resolve(task), 1000)
-  );
+export async function patchNewTask(task: Task) {
+  const response = await axios.patch<Task>(`${url}/task/new`, { task });
+  return response.data;
 }

@@ -39,3 +39,10 @@ export const createNewTask = createAsyncAction(
   'tasks/CREATE_NEW_TASK_FAILURE',
   'tasks/CREATE_NEW_TASK_CANCEL'
 )<Task, Task, Error, string>();
+
+export const updateTask = createAsyncAction(
+  'tasks/UPDATE_TASK_REQUEST',
+  'tasks/UPDATE_TASK_SUCCESS',
+  'tasks/UPDATE_TASK_FAILURE',
+  'tasks/UPDATE_TASK_CANCEL'
+)<Task, Task, Error, string>();

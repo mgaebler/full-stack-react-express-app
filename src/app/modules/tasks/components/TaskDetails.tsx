@@ -1,13 +1,14 @@
 import React, { FC } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'app/store/store';
-import { Link } from 'react-router-dom';
+import { Link, match } from 'react-router-dom';
 import { setTaskCompletion, setTaskName, setTaskGroup } from '../actions';
 
 interface Props {
-  id: string;
+  match: match<{ id: string }>;
 }
-export const TaskDetail: FC<Props> = ({ id }) => {
+export const TaskDetail: FC<Props> = ({ match }) => {
+  const id = match.params.id;
   const task = useSelector<RootState>((state) =>
     state.tasks.find((task) => task.id === id)
   );
