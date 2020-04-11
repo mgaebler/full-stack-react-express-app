@@ -2,6 +2,8 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import express from 'express';
 import { connectDB } from './connect-db';
+import './initialize-db';
+
 import { Task } from 'domain/Task';
 
 const port = 8000;
@@ -14,10 +16,12 @@ app.use(cors(), bodyParser.urlencoded({ extended: true }), bodyParser.json());
 const addNewTask = async (task: Task) => {
   const db = await connectDB();
   const collection = db.collection<Task>('tasks');
-  await collection.insertOne(task);
+  const dbResponse = await collection.insertOne(task);
+  // return the created db object
+  return dbResponse.ops[0];
 };
 
-app.get('/', async (req, res) => {
+app.get('/tasks', async (req, res) => {
   const db = await connectDB();
   const collection = db.collection<Task>('tasks');
   const cursor = await collection.find({});
@@ -26,10 +30,11 @@ app.get('/', async (req, res) => {
 });
 
 app.post('/task/new', async (req, res) => {
-  let task = req.body;
+  let { task } = req.body;
   console.log(task);
-  await addNewTask(task);
-  res.status(200).send();
+  const savedTask = await addNewTask(task);
+
+  res.status(200).json(savedTask);
 });
 
 const updateTask = async (task: Task) => {
