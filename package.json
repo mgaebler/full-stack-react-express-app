@@ -9,7 +9,7 @@
     "dev": "webpack-dev-server --display-error-details --watch --open",
     "initialize": "babel-node --extensions \".ts\" ./src/server/initialize-db.ts",
     "server": "babel-node --extensions \".ts\" ./src/server/server.ts",
-    "dev-server": "babel-node --extensions \".ts\" ./src/server/server.ts",
+    "dev-server": "babel-node --extensions \".ts\" ./src/server/server.ts --inspect",
     "check-types": "tsc",
     "start-dev": "concurrently \"nodemon\" \"npm run dev\" \"docker-compose up\""
   },
